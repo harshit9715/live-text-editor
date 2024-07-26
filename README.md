@@ -1,7 +1,7 @@
 # LiveDocs - A live text editor built using NextJs and LiveBlocks
 
 # Demo Link
-![[LiveDocs](https://livedocs.harshit.dev/)](./public/assets/icons/logo.svg)
+[![LiveDocs](./public/assets/icons/logo.svg)](https://livedocs.harshit.dev/)
 
 LiveDocs is a live text editor built using NextJs and LiveBlocks. It allows you to write and edit text in real-time with other users. It is built using NextJs, LiveBlocks.
 
