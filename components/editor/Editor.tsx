@@ -10,7 +10,13 @@ import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import React from "react";
-import { FloatingComposer, FloatingThreads, liveblocksConfig, LiveblocksPlugin, useEditorStatus } from "@liveblocks/react-lexical";
+import {
+  FloatingComposer,
+  FloatingThreads,
+  liveblocksConfig,
+  LiveblocksPlugin,
+  useEditorStatus,
+} from "@liveblocks/react-lexical";
 import Loader from "../Loader";
 import FloatingToolbar from "./plugins/FloatingToolbar";
 import { useThreads } from "@liveblocks/react/suspense";
@@ -33,7 +39,7 @@ export function Editor({
   currentUserType: UserType;
 }) {
   const status = useEditorStatus();
-  const {threads} = useThreads();
+  const { threads } = useThreads();
   const initialConfig = liveblocksConfig({
     namespace: "Editor",
     nodes: [HeadingNode],
@@ -50,7 +56,7 @@ export function Editor({
       <div className="editor-container size-full">
         <div className="toolbar-wrapper flex min-w-full justify-between">
           <ToolbarPlugin />
-          {currentUserType === 'editor' && <DeleteModal roomId={roomId} />}
+          {currentUserType === "editor" && <DeleteModal roomId={roomId} />}
         </div>
         <div className="editor-wrapper flex flex-col items-center justify-start">
           {status === "not-loaded" || status === "loading" ? (
@@ -71,7 +77,7 @@ export function Editor({
           )}
           <LiveblocksPlugin>
             <FloatingComposer className="w-[350px]" />
-            <FloatingThreads threads={threads}  />
+            <FloatingThreads threads={threads} />
             <Comments />
           </LiveblocksPlugin>
         </div>

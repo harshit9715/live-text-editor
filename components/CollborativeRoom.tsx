@@ -11,11 +11,16 @@ import Image from "next/image";
 import { updateDocument } from "@/lib/actions/room.actions";
 import ShareModel from "./ShareModel";
 
-const CollborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: CollaborativeRoomProps) => {
+const CollborativeRoom = ({
+  roomId,
+  roomMetadata,
+  users,
+  currentUserType,
+}: CollaborativeRoomProps) => {
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [docTitle, setDocTitle] = useState(
-    roomMetadata?.title || "Untitled Document"
+    roomMetadata?.title || "Untitled Document",
   );
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -30,12 +35,12 @@ const CollborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Coll
         setEditing(false);
         updateDocument({ roomId, title: docTitle });
       }
-    }
+    };
     document.addEventListener("mousedown", handleClickOutside);
-  
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-    }
+    };
   }, [docTitle, roomId]);
 
   useEffect(() => {
@@ -43,9 +48,10 @@ const CollborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Coll
       inputRef.current?.focus();
     }
   }, [editing]);
-  
 
-  const updatTitleHandler = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const updatTitleHandler = async (
+    e: React.KeyboardEvent<HTMLInputElement>,
+  ) => {
     if (e.key === "Enter") {
       setLoading(true);
       try {
@@ -61,7 +67,7 @@ const CollborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Coll
       } catch (error) {
         console.error(error);
       } finally {
-      setLoading(false);
+        setLoading(false);
       }
     }
   };
@@ -93,12 +99,12 @@ const CollborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Coll
               )}
               {currentUserType === "editor" && !editing && (
                 <Image
-                    src="/assets/icons/edit.svg"
-                    alt="edit"
-                    width={24}
-                    height={24}
-                    onClick={() => setEditing(true)}
-                  />
+                  src="/assets/icons/edit.svg"
+                  alt="edit"
+                  width={24}
+                  height={24}
+                  onClick={() => setEditing(true)}
+                />
               )}
               {currentUserType !== "editor" && !editing && (
                 <p className="vire-only-tag">View Only</p>
@@ -107,7 +113,12 @@ const CollborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Coll
             </div>
             <div className="flex w-full flex-1 justify-end gap-2 sm:gap-3">
               <ActiveCollaborators />
-              <ShareModel roomId={roomId} collaborators={users} creatorId={roomMetadata.creatorId} currentUserType={currentUserType} />
+              <ShareModel
+                roomId={roomId}
+                collaborators={users}
+                creatorId={roomMetadata.creatorId}
+                currentUserType={currentUserType}
+              />
               <SignedOut>
                 <SignInButton />
               </SignedOut>

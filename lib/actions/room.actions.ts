@@ -110,7 +110,7 @@ export const updateDocumentAccess = async ({
 
       await liveblocks.triggerInboxNotification({
         userId: email,
-        kind: '$documentAccess',
+        kind: "$documentAccess",
         subjectId: notificationId,
         activityData: {
           userType,
@@ -118,7 +118,8 @@ export const updateDocumentAccess = async ({
           updatedBy: updatedBy.name,
           avatar: updatedBy.avatar,
           email: updatedBy.email,
-        }, roomId,
+        },
+        roomId,
       });
     }
 
