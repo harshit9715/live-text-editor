@@ -16,6 +16,8 @@
  
 # build output
 *.log
+bun.lockb
+
 
 # production
 /build
